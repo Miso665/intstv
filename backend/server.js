@@ -7,9 +7,10 @@ const PORT = process.env.PORT || 5000;
 
 
 const routers = {
-    '/api/temperatura': require('./routes/temperatura.routes'),
-    '/api/buka': require('./routes/buka.routes'),
-    '/api/ljudi': require('./routes/ljudi.routes'),
+    '/api/temperature': require('./routes/temperature.routes'),
+    '/api/sound': require('./routes/sound.routes'),
+    '/api/people': require('./routes/people.routes'),
+    '/api/humidity': require('./routes/humidity.routes')
 }
 
 app.use(cors());
