@@ -10,7 +10,8 @@ const routers = {
     '/api/temperature': require('./routes/temperature.routes'),
     '/api/sound': require('./routes/sound.routes'),
     '/api/people': require('./routes/people.routes'),
-    '/api/humidity': require('./routes/humidity.routes')
+    '/api/humidity': require('./routes/humidity.routes'),
+    '/api/alert': require('./routes/alert.routes')
 }
 
 app.use(cors());

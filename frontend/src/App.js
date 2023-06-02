@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { Fragment, useEffect, useState, useHistory } from "react";
 import './App.css';
 
+import AdminPage from './pages/AdminPage';
 import MainPage from './pages/MainPage';
 import Navbar from './components/Navbar';
 import Graphs from './pages/Graphs';
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<MainPage />}></Route>
         <Route exact path="/graphs" element={<Graphs />}></Route>
+        <Route exact path="/admin" element={<AdminPage />}></Route>
       </Routes>
     </BrowserRouter>
   );

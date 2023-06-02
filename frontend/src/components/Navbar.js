@@ -27,6 +27,17 @@ const styles = {
             borderBottom: "1px solid white",
         },
     },
+    linkAdmin: {
+        textDecoration: "none",
+        color: "white",
+        fontSize: "20px",
+        float: "right",
+        marginLeft: "auto",
+        "&:hover": {
+            color: "yellow",
+            borderBottom: "1px solid white",
+        },
+    },
 };
 
 function Navbar() {
@@ -45,7 +56,11 @@ function Navbar() {
                     <Link to="/graphs" style={styles.link}>
                         Grafovi
                     </Link>
+
                 </div>
+                <Link to="/admin" style={styles.linkAdmin}>
+                    Administrator
+                </Link>
             </Toolbar>
         </AppBar>
     );
