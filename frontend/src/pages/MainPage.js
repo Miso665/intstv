@@ -117,10 +117,10 @@ function MainPage() {
                 display: "flex",
                 flexWrap: "wrap"
             }}>
-                <ReadingCard text="Trenutna temperatura u knjižnici" value={temperature} unit="°C" icon=<DeviceThermostatIcon fontSize="50px" /> />
-                <ReadingCard text="Trenutna vlažnost zraka u knjižnici" value={humidity} unit="%" icon=<WaterDropIcon fontSize="50px" /> />
-                <ReadingCard text="Trenutni broj ljudi u knjižnici" value={peopleCount} unit="" icon=<PeopleIcon fontSize="50px" /> />
-                <ReadingCard text="Trenutna razina buke u knjižnici" value={sound} unit="dB" icon=<VolumeUpIcon fontSize="50px" /> />
+                <ReadingCard text="Trenutna temperatura u knjižnici" value={temperature} link="/temperature" unit="°C" icon=<DeviceThermostatIcon fontSize="50px" /> />
+                <ReadingCard text="Trenutna vlažnost zraka u knjižnici" value={humidity} link="/humidity" unit="%" icon=<WaterDropIcon fontSize="50px" /> />
+                <ReadingCard text="Trenutni broj ljudi u knjižnici" value={peopleCount} link="/people" unit="" icon=<PeopleIcon fontSize="50px" /> />
+                <ReadingCard text="Trenutna razina buke u knjižnici" value={sound} link="/sound" unit="dB" icon=<VolumeUpIcon fontSize="50px" /> />
             </div></>
     )
 

@@ -22,6 +22,9 @@ const styles = {
         color: "white",
         fontSize: "20px",
         marginLeft: 10,
+        paddingRight: "15px",
+        paddingLeft: "15px",
+        paddingTop: "8px",
         "&:hover": {
             color: "yellow",
             borderBottom: "1px solid white",
@@ -53,8 +56,17 @@ function Navbar() {
                     <Link to="/" style={styles.link}>
                         Početna
                     </Link>
-                    <Link to="/graphs" style={styles.link}>
-                        Grafovi
+                    <Link to="/temperature" style={styles.link}>
+                        Temperatura
+                    </Link>
+                    <Link to="/humidity" style={styles.link}>
+                        Vlažnost
+                    </Link>
+                    <Link to="/people" style={styles.link}>
+                        Broj ljudi
+                    </Link>
+                    <Link to="/sound" style={styles.link}>
+                        Glasnoća
                     </Link>
 
                 </div>
