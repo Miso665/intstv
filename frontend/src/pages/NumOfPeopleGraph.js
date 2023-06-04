@@ -63,50 +63,50 @@ function NumOfPeopleGraph() {
         }
     }
     const getPeopleDataMonth = async () => {
-      try {
-          // Primjer raspona vremena .getTime() vraca broj milisekundi
-          //const time1 = new Date("2015-05-05").getTime()
-          const time1 = new Date().getTime() - 30 * 24 * 60 * 60 * 1000
-          const time2 = new Date().getTime()
-          graphType = "Mjesečni izvještaj"
-          const responsePeople = await fetch(apiLink + `people/range?t1=${time1}&t2=${time2}`,
-              {
-                  method: "GET",
-                  mode: "cors",
-                  headers: {
-                      "Content-type": "application/json"
-                  }
-              });
-          let jsonData = await responsePeople.json();
-          console.log(jsonData)
-          setPeopleData(jsonData)
+        try {
+            // Primjer raspona vremena .getTime() vraca broj milisekundi
+            //const time1 = new Date("2015-05-05").getTime()
+            const time1 = new Date().getTime() - 30 * 24 * 60 * 60 * 1000
+            const time2 = new Date().getTime()
+            graphType = "Mjesečni izvještaj"
+            const responsePeople = await fetch(apiLink + `people/range?t1=${time1}&t2=${time2}`,
+                {
+                    method: "GET",
+                    mode: "cors",
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                });
+            let jsonData = await responsePeople.json();
+            console.log(jsonData)
+            setPeopleData(jsonData)
 
-      } catch (e) {
-          console.log(e)
-      }
+        } catch (e) {
+            console.log(e)
+        }
     }
     const getPeopleDataWeek = async () => {
-      try {
-          // Primjer raspona vremena .getTime() vraca broj milisekundi
-          //const time1 = new Date("2015-05-05").getTime()
-          const time1 = new Date().getTime() - 7 * 24 * 60 * 60 * 1000
-          const time2 = new Date().getTime()
-          graphType = "Tjedni izvještaj"
-          const responsePeople = await fetch(apiLink + `people/range?t1=${time1}&t2=${time2}`,
-              {
-                  method: "GET",
-                  mode: "cors",
-                  headers: {
-                      "Content-type": "application/json"
-                  }
-              });
-          let jsonData = await responsePeople.json();
-          console.log(jsonData)
-          setPeopleData(jsonData)
+        try {
+            // Primjer raspona vremena .getTime() vraca broj milisekundi
+            //const time1 = new Date("2015-05-05").getTime()
+            const time1 = new Date().getTime() - 7 * 24 * 60 * 60 * 1000
+            const time2 = new Date().getTime()
+            graphType = "Tjedni izvještaj"
+            const responsePeople = await fetch(apiLink + `people/range?t1=${time1}&t2=${time2}`,
+                {
+                    method: "GET",
+                    mode: "cors",
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                });
+            let jsonData = await responsePeople.json();
+            console.log(jsonData)
+            setPeopleData(jsonData)
 
-      } catch (e) {
-          console.log(e)
-      }
+        } catch (e) {
+            console.log(e)
+        }
     }
     const getPeopleDataDay = async () => {
         try {
@@ -124,16 +124,15 @@ function NumOfPeopleGraph() {
                     }
                 });
 
-            let jsonData = []
-            if (responsePeople.count > 0) {
-                let jsonData = await responsePeople.json();
-            }
+            let jsonData = await responsePeople.json();
+
             console.log(jsonData)
             setPeopleData(jsonData)
 
-      } catch (e) {
-          console.log(e)
-      }
+        } catch (e) {
+            setPeopleData([])
+            console.log(e)
+        }
     }
 
     // Hook za dohvacanje podataka
@@ -144,10 +143,10 @@ function NumOfPeopleGraph() {
     return (
         <div>
             <div>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getPeopleData()}>Cijeli izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getPeopleDataMonth()}>Mjesečni izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getPeopleDataWeek()}>Tjedni izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getPeopleDataDay()}>Dnevni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getPeopleData()}>Cijeli izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getPeopleDataMonth()}>Mjesečni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getPeopleDataWeek()}>Tjedni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getPeopleDataDay()}>Dnevni izvještaj</Button>
             </div>
             <ChartComp title="Kretanje broja ljudi" graphT={graphType} data={data} />
         </div>

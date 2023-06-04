@@ -20,7 +20,7 @@ let graphType = "Cijeli izvještaj"
 function TemperatureGraph() {
     // Treba dodati .env fajl
     const apiLink = process.env.REACT_APP_APILINK
-    
+
     // Stateovi za grafove useState
     const [temperatureData, setTemperatureData] = useState([])
     // Data u grafu
@@ -63,49 +63,49 @@ function TemperatureGraph() {
         }
     }
     const getTemperatureDataMonth = async () => {
-      try {
-          const time1 = new Date().getTime() - 30 * 24 * 60 * 60 * 1000
-          const time2 = new Date().getTime()
-          graphType = "Mjesečni izvještaj"
-          const responseTemp = await fetch(apiLink + `temperature/range?t1=${time1}&t2=${time2}`,
-              {
-                  method: "GET",
-                  mode: "cors",
-                  headers: {
-                      "Content-type": "application/json"
-                  }
-              });
-          let jsonData = await responseTemp.json();
-          //jsonData.sort((data1, data2) => data2.time - data1.time)
-          console.log(jsonData)
-          setTemperatureData(jsonData)
+        try {
+            const time1 = new Date().getTime() - 30 * 24 * 60 * 60 * 1000
+            const time2 = new Date().getTime()
+            graphType = "Mjesečni izvještaj"
+            const responseTemp = await fetch(apiLink + `temperature/range?t1=${time1}&t2=${time2}`,
+                {
+                    method: "GET",
+                    mode: "cors",
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                });
+            let jsonData = await responseTemp.json();
+            //jsonData.sort((data1, data2) => data2.time - data1.time)
+            console.log(jsonData)
+            setTemperatureData(jsonData)
 
-      } catch (e) {
-          console.log(e)
-      }
+        } catch (e) {
+            console.log(e)
+        }
     }
     const getTemperatureDataWeek = async () => {
-      try {
-          const time1 = new Date().getTime() - 7 * 24 * 60 * 60 * 1000
-          const time2 = new Date().getTime()
-          graphType = "Tjedni izvještaj"
-          const responseTemp = await fetch(apiLink + `temperature/range?t1=${time1}&t2=${time2}`,
-              {
-                  method: "GET",
-                  mode: "cors",
-                  headers: {
-                      "Content-type": "application/json"
-                  }
-              });
-          let jsonData = await responseTemp.json();
-          //jsonData.sort((data1, data2) => data2.time - data1.time)
-          console.log(jsonData)
-          setTemperatureData(jsonData)
-          
+        try {
+            const time1 = new Date().getTime() - 7 * 24 * 60 * 60 * 1000
+            const time2 = new Date().getTime()
+            graphType = "Tjedni izvještaj"
+            const responseTemp = await fetch(apiLink + `temperature/range?t1=${time1}&t2=${time2}`,
+                {
+                    method: "GET",
+                    mode: "cors",
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                });
+            let jsonData = await responseTemp.json();
+            //jsonData.sort((data1, data2) => data2.time - data1.time)
+            console.log(jsonData)
+            setTemperatureData(jsonData)
 
-      } catch (e) {
-          console.log(e)
-      }
+
+        } catch (e) {
+            console.log(e)
+        }
     }
     const getTemperatureDataDay = async () => {
         try {
@@ -121,20 +121,18 @@ function TemperatureGraph() {
                         "Content-type": "application/json"
                     }
                 });
-            let jsonData = []
-            if (responseTemp.count > 0) {
-                let jsonData = await responseTemp.json();
-            }
+            let jsonData = await responseTemp.json();
             console.log(jsonData)
             setTemperatureData(jsonData)
 
-            
+
 
         } catch (e) {
+            setTemperatureData([])
             console.log(e)
         }
     }
-    
+
     // Hook za dohvacanje podataka
     useEffect(() => {
         getTemperatureData()
@@ -142,12 +140,12 @@ function TemperatureGraph() {
     return (
         <div>
             <div>
-                <Button style={{ textAlign: "center", margin:"15px" }} variant="contained" onClick={() => getTemperatureData()}>Cijeli izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px" }} variant="contained" onClick={() => getTemperatureDataMonth()}>Mjesečni izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px" }} variant="contained" onClick={() => getTemperatureDataWeek()}>Tjedni izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px" }} variant="contained" onClick={() => getTemperatureDataDay()}>Dnevni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getTemperatureData()}>Cijeli izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getTemperatureDataMonth()}>Mjesečni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getTemperatureDataWeek()}>Tjedni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getTemperatureDataDay()}>Dnevni izvještaj</Button>
             </div>
-            
+
             <ChartComp title="Kretanje temperature" graphT={graphType} data={data} />
         </div>
 

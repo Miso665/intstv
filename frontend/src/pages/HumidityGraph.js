@@ -123,14 +123,12 @@ function HumidityGraph() {
                         "Content-type": "application/json"
                     }
                 });
-            let jsonData = []
-            if (responseHum.count > 0) {
-                let jsonData = await responseHum.json();
-            }            
+            let jsonData = await responseHum.json();
             console.log(jsonData)
             setHumidityData(jsonData)
 
         } catch (e) {
+            setHumidityData([])
             console.log(e)
         }
     }
@@ -143,10 +141,10 @@ function HumidityGraph() {
     return (
         <div>
             <div >
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getHumidityData()}>Cijeli izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getHumidityDataMonth()}>Mjesečni izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getHumidityDataWeek()}>Tjedni izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getHumidityDataDay()}>Dnevni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getHumidityData()}>Cijeli izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getHumidityDataMonth()}>Mjesečni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getHumidityDataWeek()}>Tjedni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getHumidityDataDay()}>Dnevni izvještaj</Button>
             </div>
             <ChartComp title="Kretanje vlažnosti zraka" graphT={graphType} data={data} />
         </div>

@@ -123,16 +123,17 @@ function SoundGraph() {
                         "Content-type": "application/json"
                     }
                 });
-            let jsonData = []
-            if (responseSound.count > 0) {
-                let jsonData = await responseSound.json();
-            }
+
+            let jsonData = await responseSound.json()
+            /*if (responseSound.count > 0) {
+                jsonData = await responseSound.json();
+            }*/
             //jsonData.sort((data1, data2) => data2.time - data1.time)
             console.log(jsonData)
             setSoundData(jsonData)
 
         } catch (e) {
-            console.log(e)
+            setSoundData([])
             graphType = "Dnevni izvještaj"
         }
     }
@@ -144,10 +145,10 @@ function SoundGraph() {
     return (
         <div>
             <div>
-                <Button style={{ textAlign: "center", margin:"15px" }} variant="contained" onClick={() => getSoundData()}>Cijeli izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getSoundDataMonth()}>Mjesečni izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getSoundDataWeek()}>Tjedni izvještaj</Button>
-                <Button style={{ textAlign: "center", margin:"15px"  }} variant="contained" onClick={() => getSoundDataDay()}>Dnevni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getSoundData()}>Cijeli izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getSoundDataMonth()}>Mjesečni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getSoundDataWeek()}>Tjedni izvještaj</Button>
+                <Button style={{ textAlign: "center", margin: "15px" }} variant="contained" onClick={() => getSoundDataDay()}>Dnevni izvještaj</Button>
             </div>
             <ChartComp title="Razina buke" graphT={graphType} data={data} />
         </div>

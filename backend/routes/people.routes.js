@@ -10,6 +10,16 @@ const auth = {
     password: process.env.PASSWORD
 };
 
+function getEveryNth(arr, nth) {
+    const result = [];
+
+    for (let index = 0; index < arr.length; index += nth) {
+        result.push(arr[index]);
+    }
+
+    return result;
+}
+
 router.get("/latest", async (req, res) => {
     try {
         const url = dataJedi;
@@ -48,16 +58,18 @@ router.get("/range", async (req, res) => {
         };
         const params = {
             resourceSpec: 'Grupa8PeopleCount',
+            maxPayloadsPerResource: 10000,
             t1: time1,
             t2: time2
         };
 
         axios.get(url, { params, headers, auth, httpsAgent: new (require('https').Agent)({ rejectUnauthorized: false }) })
             .then(response => {
-                console.log(response.data);
-                let jsonData = response.data
+                //console.log(response.data);
+                let jsonData = getEveryNth(response.data.contentNodes, Math.round(response.data.contentNodes.length / 100))
+                console.log(jsonData)
                 res.status(200)
-                return res.json(jsonData.contentNodes)
+                return res.json(jsonData)
             })
             .catch(error => {
                 console.error(error);
