@@ -66,7 +66,13 @@ router.get("/range", async (req, res) => {
         axios.get(url, { params, headers, auth, httpsAgent: new (require('https').Agent)({ rejectUnauthorized: false }) })
             .then(response => {
                 //console.log(response.data);
-                let jsonData = getEveryNth(response.data.contentNodes, Math.round(response.data.contentNodes.length / 100))
+                let jsonData
+                if (response.data.contentNodes.length > 100) {
+                    jsonData = getEveryNth(response.data.contentNodes, Math.round(response.data.contentNodes.length / 100))
+                }
+                else {
+                    jsonData = response.data.contentNodes
+                }
                 console.log(jsonData)
                 res.status(200)
                 return res.json(jsonData)
